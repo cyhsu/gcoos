@@ -4,7 +4,8 @@
 #--		see the percentage of the flag raised in each file.
 #--
 #--	@C.Y. Hsu at Texas A&M Univ on 03-11-2019 
-rm aaaa
+output="qcflag_checker.out"
+if [ -f aaaa ]; then rm aaaa; fi
 touch aaaa
 
 for fid in *.csv
@@ -14,22 +15,22 @@ done
 
 cat aaaa | cut -d ':' -f1 |uniq -c | sort -n > aaab
 
-if [ -f aaac ]; then rm aaac; fi; touch aaac
+if [ -f $output ]; then rm $output; fi; touch $output
 
-echo "#-- Check the qcFlag == 11133222 or 11144222 or 99999999" >> aaac
-echo "#-- " >> aaac
-echo "#-- Column 01 = file name" >> aaac
-echo "#-- Column 02 = occurance percentage" >> aaac
-echo "#-- Column 03 = occurance" >> aaac
-echo "#-- Column 04 = total num of data" >> aaac
-echo "#-- " >> aaac
-echo -e "\t\t\t file name \t\t\t\t\t percent  error  total" >> aaac
+echo "#-- Check the qcFlag == 11133222 or 11144222 or 99999999" >> $output
+echo "#-- " >> $output
+echo "#-- Column 01 = file name" >> $output
+echo "#-- Column 02 = occurance percentage" >> $output
+echo "#-- Column 03 = occurance" >> $output
+echo "#-- Column 04 = total num of data" >> $output
+echo "#-- " >> $output
+echo -e "\t\t\t file name \t\t\t\t\t percent  error  total" >> $output
 
 for fid in `cat aaab | awk '{print $2}'`
 do 
 	total_num=`cat $fid |wc -l`
 	error_num=`grep $fid aaab | awk '{print $1}'`
 	error_per=`echo "${error_num}/${total_num} *100.0" |bc -l| xargs printf %4.2f`
-	printf "%-70s \t %05.2f%%   %5d  %5d\n" $fid $error_per $error_num $total_num >>aaac
+	printf "%-90s \t %05.2f%%   %5d  %5d\n" $fid $error_per $error_num $total_num >> $output
 done
-
+rm aaaa aaab
