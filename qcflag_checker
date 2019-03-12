@@ -24,7 +24,7 @@ echo "#-- Column 02 = occurance percentage" >> $output
 echo "#-- Column 03 = occurance" >> $output
 echo "#-- Column 04 = total num of data" >> $output
 echo "#-- " >> $output
-echo -e "\t\t\t file name \t\t\t\t\t percent  error  total" >> $output
+echo -e "\t\t\t\t file name \t\t\t\t\t\t percent  error  total" >> $output
 
 for fid in `cat aaab | awk '{print $2}'`
 do 
