@@ -1,0 +1,26 @@
+{
+  "name": "river_discharge",
+  "version": "1.0.0",
+  "description": "River Discharge data in the Gulf States",
+  "author": "Shin Kobara",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3004 nuxt",
+    "build": "nuxt build",
+    "start": "PORT=8004 nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.13",
+    "cross-env": "^5.2.0",
+    "event-stream": "^4.0.1",
+    "jquery": "^3.3.1",
+    "nuxt": "^2.4.3",
+    "nuxt-google-maps-module": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

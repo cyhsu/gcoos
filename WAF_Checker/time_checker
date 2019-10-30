@@ -1,0 +1,36 @@
+#!/bin/bash
+#-- 
+#--	Check whether the repeated time is existed
+#--		1. Since the time location in "sea_water_currents" is differ than others,
+#--			set up a substring match string to locate the location id "num"
+#--		2. Count the repeat and show the numbers
+#--
+#--
+#--	@C.Y. Hsu at Texas A&M Univ on 03-12-2019 
+output='time_checker.out'
+
+if [ -f aaaa ]; then rm aaaa; fi
+touch aaaa
+
+
+echo "#-- Check whether the time index is duplicated" > $output
+echo "#-- " >> $output
+echo "#-- Column 01 = File Name" >> $output
+echo "#-- Column 02 = Time Index" >> $output
+echo "#-- Column 03 = Occurance Frequency" >> $output
+echo "#-- " >> $output
+echo -e "\t\t\t\t file name \t\t\t\t\t\t   timeindex \t\t num" >> $output
+
+for fid in *.csv
+do
+	if [[ $fid == *"currents"* ]];then num=6;else num=5;fi
+
+	if [ -f rpt ]; then rm rpt; fi
+	count=`grep -H -E -v "GCOOS" $fid | grep Z| cut -d ',' "-f${num}" |uniq -c`
+	for repeat in "${count[@]}"
+	do 
+		printf "$fid %s %s\n" $repeat >> rpt
+	done
+	cat rpt| awk '{if ($2 > 1) printf("%-90s %20s  %03d \n", $1,$3,$2)}' >> $output
+done
+rm rpt aaaa
