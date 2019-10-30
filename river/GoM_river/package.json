@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "cross-env": "^5.2.0",
     "event-stream": "^4.0.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "nuxt": "^2.4.3",
     "nuxt-google-maps-module": "^1.6.0"
   },
